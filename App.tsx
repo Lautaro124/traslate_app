@@ -1,17 +1,24 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
+import service from './service/service'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import type { Translate } from './interfaces/traslate'
 
 export default function App () {
   const [text, setText] = useState<string>('')
   const [translatedText, setTranslatedText] = useState<string>('')
+
+  const translate = async () => {
+    const { data } = await service<Translate>(text)
+    setTranslatedText(data[0])
+  }
 
   return (
     <View style={styles.container}>
       <StatusBar style='auto'/>
       <Text>Write your text</Text>
       <TextInput style={styles.input} onChangeText={setText} />
-      <Button title='Traslate' />
+      <Button title='Traslate' onPress={() => { void translate() }} />
       <View>
         <Text>Translated text</Text>
         <View>
