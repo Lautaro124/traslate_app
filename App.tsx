@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
 import service from './service/service'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import type { Translate } from './interfaces/traslate'
+import InputTraslate from './components/inputTraslate'
+import TextTraslate from './components/textTraslate'
 
 export default function App () {
   const [text, setText] = useState<string>('')
@@ -16,15 +18,8 @@ export default function App () {
   return (
     <View style={styles.container}>
       <StatusBar style='auto'/>
-      <Text>Write your text</Text>
-      <TextInput style={styles.input} onChangeText={setText} />
-      <Button title='Traslate' onPress={() => { void translate() }} />
-      <View>
-        <Text>Translated text</Text>
-        <View>
-          <Text>{translatedText}</Text>
-        </View>
-      </View>
+      <InputTraslate setText={setText} translate={translate} />
+      <TextTraslate traslateText={translatedText} />
     </View>
   )
 }
@@ -35,12 +30,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  input: {
-    height: 40,
-    width: 200,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 5
   }
 })
