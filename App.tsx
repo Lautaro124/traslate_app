@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
 import service from './service/service'
-import { StyleSheet, View } from 'react-native'
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native'
 import type { Translate } from './interfaces/traslate'
 import InputTraslate from './components/inputTraslate'
 import TextTraslate from './components/textTraslate'
@@ -12,15 +12,20 @@ export default function App () {
 
   const translate = async () => {
     const { data } = await service<Translate>(text)
-    setTranslatedText(data[0])
+    const textTraslated = data[0].split('--')[0]
+    setTranslatedText(textTraslated)
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container}>
+          <InputTraslate setText={setText} translate={translate} />
+          <TextTraslate traslateText={translatedText} />
+        </View>
+      </ScrollView>
       <StatusBar style='auto'/>
-      <InputTraslate setText={setText} translate={translate} />
-      <TextTraslate traslateText={translatedText} />
-    </View>
+    </SafeAreaView>
   )
 }
 

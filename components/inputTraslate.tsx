@@ -9,7 +9,12 @@ const InputTraslate = ({ setText, translate }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title} >Write your text</Text>
-      <TextInput style={styles.input} onChangeText={setText} />
+      <TextInput
+        multiline
+        placeholder='Write your text here...'
+        style={styles.input}
+        onChangeText={setText}
+      />
       <View style={styles.button}>
         <Button
           title='Traslate'
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
   },
   title: {
     width: '100%',
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: 'bold'
   },
   input: {
@@ -44,7 +49,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'left',
     textAlignVertical: 'top',
-    padding: 5
+    padding: 5,
+    fontSize: 15,
+    fontWeight: 'normal'
   },
   button: {
     width: 300,

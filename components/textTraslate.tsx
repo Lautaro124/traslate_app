@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
+import ShareText from './shareText'
 
 const TextTraslate = ({ traslateText }: { traslateText: string }) => {
   return (
@@ -6,6 +7,7 @@ const TextTraslate = ({ traslateText }: { traslateText: string }) => {
         <Text style={styles.title}>Translated text</Text>
         <View style={styles.textContainer}>
           <Text style={styles.text}>{traslateText}</Text>
+          <ShareText text={traslateText}/>
         </View>
       </View>
   )
@@ -15,14 +17,14 @@ export default TextTraslate
 
 const styles = StyleSheet.create({
   contaner: {
-    flex: 3,
+    flex: 2,
     width: '100%',
     padding: 20,
     backgroundColor: '#fff',
     alignItems: 'flex-start'
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10
   },
@@ -31,10 +33,13 @@ const styles = StyleSheet.create({
     height: 400,
     backgroundColor: '#f5f5f5',
     borderRadius: 5,
-    padding: 5
+    padding: 10
   },
   text: {
-    fontSize: 16,
-    fontWeight: 'normal'
+    flex: 7,
+    width: '100%',
+    fontSize: 15,
+    fontWeight: 'normal',
+    textAlign: 'left'
   }
 })
